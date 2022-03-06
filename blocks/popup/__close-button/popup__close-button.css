@@ -13,7 +13,7 @@
   transition: opacity 0.3s linear;
 }
 
-.edit-form__close-button:hover {
+.popup__close-button:hover {
   opacity: 0.6;
 }
 
