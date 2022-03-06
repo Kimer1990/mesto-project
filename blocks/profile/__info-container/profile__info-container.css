@@ -1,10 +1,14 @@
 .profile__info-container {
   display: flex;
   flex-flow: column;
+  width: calc(100% - 320px);
+  margin-right: 20px;
 }
 
 @media screen and (max-width: 767px) {
   .profile__info-container {
+    width: 100%;
+    margin-right: 0;
     margin-bottom: 33px;
     align-items: center;
   }

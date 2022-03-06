@@ -1,0 +1,5 @@
+.edit-form {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
