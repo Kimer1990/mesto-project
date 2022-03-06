@@ -1,0 +1,11 @@
+.profile__edit-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__edit-container {
+    margin-left: 34px;
+  }
+}

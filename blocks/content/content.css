@@ -1,0 +1,29 @@
+.content {
+  padding: 40px 0 67px;
+  box-sizing: border-box;
+  width: calc(100% - 400px);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 1279px) {
+  .content {
+    min-width: 824px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .content {
+    width: calc(100% - 200px);
+    min-width: 668px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+    padding: 42px 0 48px;
+    width: calc(100% - 100px);
+    min-width: 282px;
+  }
+}

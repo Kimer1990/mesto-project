@@ -1,0 +1,26 @@
+.footer {
+  padding-bottom: 56px;
+  box-sizing: border-box;
+  width: calc(100% - 400px);
+}
+
+@media screen and (max-width: 1279px) {
+  .footer {
+    min-width: 824px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .footer {
+    width: calc(100% - 200px);
+    min-width: 668px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    width: calc(100% - 100px);
+    min-width: 282px;
+    padding-bottom: 33px;
+  }
+}

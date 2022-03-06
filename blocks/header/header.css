@@ -1,0 +1,29 @@
+.header {
+  padding-top: 45px;
+  box-sizing: border-box;
+  width: calc(100% - 400px);
+  display: flex;
+  flex-flow: column;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+}
+
+@media screen and (max-width: 1279px) {
+  .header {
+    min-width: 824px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .header {
+    width: calc(100% - 200px);
+    min-width: 668px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    padding-top: 28px;
+    width: calc(100% - 100px);
+    min-width: 320px;
+  }
+}
