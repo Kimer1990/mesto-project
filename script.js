@@ -6,7 +6,7 @@ const editForm = document.querySelector('.edit-form');
 const addButton = document.querySelector('.profile__add-button');
 const addForm = document.querySelector('.add-card-form');
 
-const fullImage = document.querySelector('.full-image');
+const fullImage = document.querySelector('.popup__full-image');
 const cardContainer = document.querySelector('.places__cards');
 
 const initialCards = [
