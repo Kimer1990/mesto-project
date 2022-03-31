@@ -1,0 +1,27 @@
+.add-card-form__save-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #000000;
+  cursor: pointer;
+  transition: opacity 0.3s linear;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 2px;
+}
+
+.add-card-form__save-button:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 529px) {
+  .add-card-form__save-button {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

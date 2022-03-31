@@ -40,116 +40,13 @@
         ></button>
       </section>
       <section class="places">
-        <ul class="places__cards">
-          <li>
-            <article class="card">
-              <img
-                class="card__image"
-                src="./vendor/images/karachaevsk.jpg"
-                alt="Руины церкви в горах"
-              />
-              <div class="card__signature">
-                <h2 class="card__title">Карачаевск</h2>
-                <button
-                  class="card__like"
-                  aria-label="Лайк"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img
-                class="card__image"
-                src="./vendor/images/elbrus.png"
-                alt="Пустыня и гора на дальнем плане"
-              />
-              <div class="card__signature">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button
-                  class="card__like"
-                  aria-label="Лайк"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img
-                class="card__image"
-                src="./vendor/images/dombay.png"
-                alt="Горы покрытые лесом"
-              />
-              <div class="card__signature">
-                <h2 class="card__title">Домбай</h2>
-                <button
-                  class="card__like card__like_active"
-                  aria-label="Лайк"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img
-                class="card__image"
-                src="./vendor/images/elbrus.png"
-                alt="Пустыня и гора на дальнем плане"
-              />
-              <div class="card__signature">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button
-                  class="card__like"
-                  aria-label="Лайк"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img
-                class="card__image"
-                src="./vendor/images/dombay.png"
-                alt="Горы покрытые лесом"
-              />
-              <div class="card__signature">
-                <h2 class="card__title">Домбай</h2>
-                <button
-                  class="card__like"
-                  aria-label="Лайк"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-          </li>
-          <li>
-            <article class="card">
-              <img
-                class="card__image"
-                src="./vendor/images/karachaevsk.jpg"
-                alt="Руины церкви в горах"
-              />
-              <div class="card__signature">
-                <h2 class="card__title">Карачаево-Черкесия</h2>
-                <button
-                  class="card__like"
-                  aria-label="Лайк"
-                  type="button"
-                ></button>
-              </div>
-            </article>
-          </li>
-        </ul>
+        <ul class="places__cards"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
-    <div class="popup popup_active">
+    <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button
@@ -170,5 +67,64 @@
         </form>
       </div>
     </div>
+    <div class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="Закрыть"
+        ></button>
+        <form class="add-card-form" name="add-card-form">
+          <input
+            class="add-card-form__field"
+            placeholder="Название"
+            type="text"
+            name="name"
+          />
+          <input
+            class="add-card-form__field"
+            placeholder="Ссылка на картинку"
+            type="text"
+            name="link"
+          />
+          <button
+            class="add-card-form__save-button"
+            type="submit"
+            aria-label="Сохранить"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_dark">
+      <figure class="popup__image-container">
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="Закрыть"
+        ></button>
+        <img class="full-image" src="" alt="" />
+        <figcaption class="full-image__caption"></figcaption>
+      </figure>
+    </div>
+    <template id="card-template">
+      <li>
+        <article class="card">
+          <button
+            class="card__delete-icon"
+            aria-label="Удалить"
+            type="button"
+          ></button>
+          <img class="card__image" src="" alt="" onclick="getFull(this)" />
+          <div class="card__signature">
+            <h2 class="card__title"></h2>
+            <button class="card__like" aria-label="Лайк" type="button"></button>
+          </div>
+        </article>
+      </li>
+    </template>
+    <script src="script.js"></script>
   </body>
 </html>
