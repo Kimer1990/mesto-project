@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
     <title>Место</title>
   </head>
   <body class="page">
@@ -54,11 +53,29 @@
           type="button"
           aria-label="Закрыть"
         ></button>
-        <form class="edit-form" name="edit-form">
-          <input class="edit-form__field" type="text" name="name" />
-          <input class="edit-form__field" type="text" name="about" />
+        <form class="form" name="edit-form" novalidate>
+          <input
+            class="form__field"
+            type="text"
+            id="name-input"
+            name="name"
+            required
+            minlength="2"
+            maxlength="40"
+          />
+          <span class="form__error name-input-error"></span>
+          <input
+            class="form__field"
+            type="text"
+            id="about-input"
+            name="about"
+            required
+            minlength="2"
+            maxlength="200"
+          />
+          <span class="form__error about-input-error"></span>
           <button
-            class="edit-form__save-button"
+            class="form__save-button"
             type="submit"
             aria-label="Сохранить"
           >
@@ -75,21 +92,29 @@
           type="button"
           aria-label="Закрыть"
         ></button>
-        <form class="add-card-form" name="add-card-form">
+        <form class="form" name="add-card-form" novalidate>
           <input
-            class="add-card-form__field"
+            class="form__field"
             placeholder="Название"
             type="text"
-            name="name"
+            id="title-input"
+            name="title"
+            required
+            minlength="2"
+            maxlength="30"
           />
+          <span class="form__error title-input-error"></span>
           <input
-            class="add-card-form__field"
+            class="form__field"
             placeholder="Ссылка на картинку"
-            type="text"
+            type="url"
+            id="link-input"
             name="link"
+            required
           />
+          <span class="form__error link-input-error"></span>
           <button
-            class="add-card-form__save-button"
+            class="form__save-button"
             type="submit"
             aria-label="Сохранить"
           >
@@ -117,7 +142,7 @@
             aria-label="Удалить"
             type="button"
           ></button>
-          <img class="card__image" src="" alt="" />
+          <img class="card__image" src="#" alt="" />
           <div class="card__signature">
             <h2 class="card__title"></h2>
             <button class="card__like" aria-label="Лайк" type="button"></button>
@@ -125,6 +150,5 @@
         </article>
       </li>
     </template>
-    <script src="script.js"></script>
   </body>
 </html>
