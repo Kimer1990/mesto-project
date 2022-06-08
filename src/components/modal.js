@@ -4,29 +4,30 @@ const imagePopup = document.querySelector('#full-image-popup');
 const fullImage = imagePopup.querySelector('.popup__full-image');
 const fullImageCaption = imagePopup.querySelector('.popup__image-caption');
 
-function EscapeClosePopup(popup, evt) {
+function escapeClosePopup(evt) {
   if (evt.key === 'Escape') {
-    hidePopup(popup);
+    const activePopup = document.querySelector('.popup_active');
+    hidePopup(activePopup);
   }
 }
 
 export function hidePopup(popup) {
   popup.classList.remove('popup_active');
 
-  window.removeEventListener('keydown', EscapeClosePopup.bind(null, popup));
+  document.removeEventListener('keydown', escapeClosePopup);
 }
 
 export function openPopup(popup) {
   popup.classList.add('popup_active');
 
-  window.addEventListener('keydown', EscapeClosePopup.bind(null, popup));
+  document.addEventListener('keydown', escapeClosePopup);
 }
 
 export function clickClosePopup() {
   allPopups.forEach((popup) => {
     const closeButton = popup.querySelector('.popup__close-button');
 
-    popup.addEventListener ('click', function(evt) {
+    popup.addEventListener ('mousedown', function(evt) {
       if (evt.target === popup || evt.target === closeButton) {
         hidePopup(popup);
       }

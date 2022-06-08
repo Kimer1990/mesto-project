@@ -1,7 +1,7 @@
 import '../pages/index.css';
 import {createCard, renderCard} from './card.js';
 import {hidePopup, openPopup, clickClosePopup} from './modal.js';
-import {hideInputError, enableValidation} from './validate.js';
+import {hideInputError, enableValidation, toggleButtonState} from './validate.js';
 
 const properties = {
   formSelector: '.form',
@@ -72,8 +72,10 @@ function initialValues() {
 }
 
 buttonProfileEdit.addEventListener('click', function() {
-  initialValues();
-  openPopup(profilePopup);
+    openPopup(profilePopup);
+    profileEditForm.querySelector(properties.submitButtonSelector).classList.remove(properties.inactiveButtonClass);
+    profileEditForm.querySelector(properties.submitButtonSelector).disabled = false;
+    initialValues();
 });
 
 profileEditForm.addEventListener('submit', function(evt) {
@@ -84,8 +86,8 @@ profileEditForm.addEventListener('submit', function(evt) {
 });
 
 buttonCardAdd.addEventListener('click', function() {
-  initialValues();
-  openPopup(cardPopup);
+    openPopup(cardPopup);
+    initialValues();
 });
 
 cardAddForm.addEventListener('submit', function(evt) {
@@ -95,6 +97,8 @@ cardAddForm.addEventListener('submit', function(evt) {
     link: cardAddLink.value
   };
   renderCard(createCard(newCard));
+  cardAddForm.querySelector(properties.submitButtonSelector).classList.add(properties.inactiveButtonClass);
+  cardAddForm.querySelector(properties.submitButtonSelector).disabled = true;
   hidePopup(cardPopup);
 });
 

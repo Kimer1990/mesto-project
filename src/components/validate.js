@@ -26,11 +26,13 @@ function hasInvalidInput(inputList, properties) {
   });
 }
 
-function toggleButtonState(inputList, buttonElement, properties) {
+export function toggleButtonState(inputList, buttonElement, properties) {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(properties.inactiveButtonClass);
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(properties.inactiveButtonClass);
+    buttonElement.disabled = false;
   }
 }
 
