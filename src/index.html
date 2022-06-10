@@ -16,21 +16,24 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img
-          class="profile__avatar profile__avatar_with-mask"
-          src="./vendor/images/avatar.png"
-          alt="Аватар профиля"
-        />
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" src="#" alt="Аватар профиля" />
+          <button
+            class="profile__avatar-mask"
+            aria-label="Редактировать аватар"
+            type="button"
+          ></button>
+        </div>
         <div class="profile__info-container">
           <div class="profile__edit-container">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button
               class="profile__edit-button"
               aria-label="Редактировать профиль"
               type="button"
             ></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button
           class="profile__add-button"
@@ -45,7 +48,7 @@
     <footer class="footer">
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
-    <div class="popup" id="profile-edite-popup">
+    <div class="popup" id="profile-edit-popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <button
@@ -53,7 +56,7 @@
           type="button"
           aria-label="Закрыть"
         ></button>
-        <form class="form" name="edit-form" novalidate>
+        <form class="form" name="edit-profile-form" novalidate>
           <input
             class="form__field"
             type="text"
@@ -109,7 +112,7 @@
             placeholder="Ссылка на картинку"
             type="url"
             id="link-input"
-            name="link"
+            name="imageLink"
             required
           />
           <span class="form__error link-input-error"></span>
@@ -119,6 +122,53 @@
             aria-label="Сохранить"
           >
             Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="avatar-edit-popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="Закрыть"
+        ></button>
+        <form class="form" name="edit-avatar-form" novalidate>
+          <input
+            class="form__field"
+            placeholder="Ссылка на аватар"
+            type="url"
+            id="avatar-input"
+            name="avatarLink"
+            required
+          />
+          <span class="form__error avatar-input-error"></span>
+          <button
+            class="form__save-button"
+            type="submit"
+            aria-label="Сохранить"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="popup" id="delete-card-popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button
+          class="popup__close-button"
+          type="button"
+          aria-label="Закрыть"
+        ></button>
+        <form class="form" name="delete-card-form" novalidate>
+          <button
+            class="form__save-button"
+            type="submit"
+            aria-label="Сохранить"
+          >
+            Да
           </button>
         </form>
       </div>
@@ -145,7 +195,14 @@
           <img class="card__image" src="#" alt="" />
           <div class="card__signature">
             <h2 class="card__title"></h2>
-            <button class="card__like" aria-label="Лайк" type="button"></button>
+            <div clas="card__like-container">
+              <button
+                class="card__like"
+                aria-label="Лайк"
+                type="button"
+              ></button>
+              <p class="card__like-count"></p>
+            </div>
           </div>
         </article>
       </li>

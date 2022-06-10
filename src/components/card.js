@@ -1,22 +1,60 @@
-import {getFullImage} from './modal.js';
+import {getFullImage, openPopup} from './modal.js';
+import {profileId, setResError, deletePopup} from './index.js';
+import {request} from './api.js';
 
 const cardContainer = document.querySelector('.places__cards');
 const cardTemplate = document.querySelector('#card-template').content;
+export  let targetCard;
+export let deleteId;
 
 export function createCard(object) {
   const newCard = cardTemplate.querySelector('li').cloneNode(true);
   const cardImage = newCard.querySelector('.card__image');
+  const cardLike = newCard.querySelector('.card__like');
+  const cardLikesCount = newCard.querySelector('.card__like-count');
+  let requestCard = object;
+  const cardOwnerId = requestCard.owner._id;
+  const cardId = requestCard._id;
 
-  cardImage.setAttribute('src', object.link);
-  cardImage.setAttribute('alt', object.name);
-  newCard.querySelector('.card__title').textContent = object.name;
+  cardImage.setAttribute('src', requestCard.link);
+  cardImage.setAttribute('alt', requestCard.name);
+  newCard.querySelector('.card__title').textContent = requestCard.name;
+  cardLikesCount.textContent = requestCard.likes.length;
 
-  newCard.querySelector('.card__delete-icon').addEventListener('click', function (evt) {
-    deleteCard(evt.target);
-  });
+  initialLike(cardLike, requestCard);
+
+  if (cardOwnerId === profileId) {
+    const deleteIcon = newCard.querySelector('.card__delete-icon');
+    deleteIcon.classList.add('card__delete-icon_active');
+    deleteIcon.addEventListener('click', function (evt) {
+      openPopup(deletePopup);
+      targetCard = evt.target;
+      deleteId = cardId;
+    });
+  };
 
   newCard.querySelector('.card__like').addEventListener('click', function (evt) {
-    changeLike(evt.target);
+    if (checkLike(requestCard)) {
+      request(`cards/likes/${cardId}`, 'DELETE')
+        .then((res) => {
+          cardLikesCount.textContent = res.likes.length;
+          deleteLike(evt.target);
+          requestCard = res;
+        })
+        .catch((err) => {
+          setResError(err);
+        });
+    } else {
+      request(`cards/likes/${cardId}`, 'PUT')
+        .then((res) => {
+          cardLikesCount.textContent = res.likes.length;
+          addLike(evt.target);
+          requestCard = res;
+        })
+        .catch((err) => {
+          setResError(err);
+        });
+    }
   });
 
   cardImage.addEventListener('click', function (evt) {
@@ -30,10 +68,32 @@ export function renderCard(card) {
   cardContainer.prepend(card);
 }
 
-function deleteCard(element) {
-  element.closest('li').remove();
+export function deleteCard(element, id) {
+  request(`cards/${id}`, 'DELETE')
+  .then(() => {
+    element.closest('li').remove();
+  })
+  .catch((err) => {
+    setResError(err);
+  });
 }
 
-function changeLike(element) {
-  element.classList.toggle('card__like_active')
+function addLike(like) {
+  like.classList.add('card__like_active')
+}
+
+function deleteLike(like) {
+  like.classList.remove('card__like_active')
+}
+
+function initialLike(like, object) {
+  if (checkLike(object)) {
+    addLike(like);
+  }
+}
+
+function checkLike(object) {
+  return object.likes.some((element) => {
+    return element._id === profileId;
+  })
 }
