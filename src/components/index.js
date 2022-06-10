@@ -81,7 +81,6 @@ function renderLoading(isLoading, button) {
 cardDeleteForm.addEventListener('submit', function(evt) {
   evt.preventDefault();
   deleteCard(targetCard, deleteId);
-  hidePopup(deletePopup);
 })
 
 buttonAvatarEdit.addEventListener('click', function() {
@@ -100,6 +99,7 @@ avatarEditForm.addEventListener('submit', function(evt) {
   request('users/me/avatar', 'PATCH', newAvatar)
     .then((res) => {
       profileAvatar.setAttribute('src', res.avatar);
+      hidePopup(avatarPopup);
     })
     .catch((err) => {
       setResError(err)
@@ -107,7 +107,6 @@ avatarEditForm.addEventListener('submit', function(evt) {
     .finally(() => {
       renderLoading(false, avatarSubmitButton);
     });
-  hidePopup(avatarPopup);
 })
 
 buttonProfileEdit.addEventListener('click', function() {
@@ -128,6 +127,7 @@ profileEditForm.addEventListener('submit', function(evt) {
     .then((res) => {
       profileName.textContent = res.name;
       profileAbout.textContent = res.about;
+      hidePopup(profilePopup);
     })
     .catch((err) => {
       setResError(err)
@@ -135,7 +135,6 @@ profileEditForm.addEventListener('submit', function(evt) {
     .finally(() => {
       renderLoading(false, profileSubmitButton);
     });
-  hidePopup(profilePopup);
 });
 
 buttonCardAdd.addEventListener('click', function() {
@@ -155,6 +154,7 @@ cardAddForm.addEventListener('submit', function(evt) {
   request('cards ', 'POST', newCard)
     .then((res) => {
       renderCard(createCard(res));
+      hidePopup(cardPopup);
     })
     .catch((err) => {
       setResError(err)
@@ -162,20 +162,12 @@ cardAddForm.addEventListener('submit', function(evt) {
     .finally(() => {
       renderLoading(false, cardSubmitButton);
     });
-  hidePopup(cardPopup);
 });
 
-request('users/me', 'GET')
-  .then((res) => {
-    setUser(res);
-  })
-  .catch((err) => {
-    setResError(err);
-  });
-
-request('cards', 'GET')
-  .then((res) => {
-    res.forEach(function(object) {
+Promise.all([request('users/me', 'GET'), request('cards', 'GET')])
+  .then(([userData, cards]) => {
+    setUser(userData);
+    cards.forEach(function(object) {
       renderCard(createCard(object));
     })
   })

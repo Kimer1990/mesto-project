@@ -72,6 +72,7 @@ export function deleteCard(element, id) {
   request(`cards/${id}`, 'DELETE')
   .then(() => {
     element.closest('li').remove();
+    hidePopup(deletePopup);
   })
   .catch((err) => {
     setResError(err);
