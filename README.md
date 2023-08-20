@@ -56,7 +56,7 @@
 Перейдите в вашу папку для хранения репозиториев. В командной строке вашего IDE выполните следующую команду клонирования с GitHub:
 
 ```sh
-`$ git clone git@github.com:isvakulenko/mesto.git`
+`$ git clone git@github.com:Kimer1990/mesto-project.git`
 ```
 
 Для установки необходимых пакетов выполните:
